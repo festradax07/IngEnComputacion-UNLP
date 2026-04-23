@@ -1,0 +1,87 @@
+los ps
+ 
+UID          PID    PPID     LWP  C NLWP STIME TTY          TIME CMD
+francis+   16274    8801   16274  0    4 09:29 pts/0    00:00:00 ./omp1_bin 30
+francis+   16274    8801   16275  0    4 09:29 pts/0    00:00:00 ./omp1_bin 30
+francis+   16274    8801   16276  0    4 09:29 pts/0    00:00:00 ./omp1_bin 30
+francis+   16274    8801   16277  0    4 09:29 pts/0    00:00:00 ./omp1_bin 30
+
+
+LIGHT WEIGHT PROCESS | 0 PORQUE SLEEP NO CONSUME RUNTIME
+
+ ./omp1_bin 30
+
+procesando con 4 hilos para N=30...
+el Thread 3 está procesando el elemento 0 (valor: 17)
+el Thread 0 está procesando el elemento 1 (valor: 15)
+el Thread 2 está procesando el elemento 2 (valor: 24)
+el Thread 1 está procesando el elemento 3 (valor: 8)
+el Thread 1 está procesando el elemento 4 (valor: 7)
+el Thread 0 está procesando el elemento 5 (valor: 26)
+el Thread 1 está procesando el elemento 6 (valor: 21)
+el Thread 3 está procesando el elemento 7 (valor: 17)
+el Thread 2 está procesando el elemento 8 (valor: 4)
+el Thread 2 está procesando el elemento 9 (valor: 18)
+el Thread 3 está procesando el elemento 10 (valor: 19)
+el Thread 1 está procesando el elemento 11 (valor: 19)
+el Thread 0 está procesando el elemento 12 (valor: 26)
+el Thread 2 está procesando el elemento 13 (valor: 20)
+el Thread 3 está procesando el elemento 14 (valor: 9)
+el Thread 1 está procesando el elemento 15 (valor: 7)
+el Thread 3 está procesando el elemento 16 (valor: 23)
+el Thread 1 está procesando el elemento 17 (valor: 29)
+el Thread 2 está procesando el elemento 18 (valor: 2)
+el Thread 0 está procesando el elemento 19 (valor: 15)
+el Thread 2 está procesando el elemento 20 (valor: 25)
+el Thread 0 está procesando el elemento 21 (valor: 2)
+el Thread 0 está procesando el elemento 22 (valor: 22)
+el Thread 3 está procesando el elemento 23 (valor: 16)
+el Thread 1 está procesando el elemento 24 (valor: 14)
+el Thread 2 está procesando el elemento 25 (valor: 4)
+el Thread 2 está procesando el elemento 26 (valor: 18)
+el Thread 3 está procesando el elemento 27 (valor: 21)
+el Thread 1 está procesando el elemento 28 (valor: 2)
+el Thread 0 está procesando el elemento 29 (valor: 14)
+Tiempo total de ejecución: 122.00 segundos
+
+
+
+CON UN QSORT 
+
+./omp1_bin 30                  
+
+procesando con 4 hilos para N=30...
+el Thread 3 está procesando el elemento 0 (valor: 30)
+el Thread 0 está procesando el elemento 3 (valor: 29)
+el Thread 1 está procesando el elemento 2 (valor: 29)
+el Thread 2 está procesando el elemento 1 (valor: 30)
+el Thread 1 está procesando el elemento 4 (valor: 29)
+el Thread 0 está procesando el elemento 5 (valor: 28)
+el Thread 2 está procesando el elemento 7 (valor: 26)
+el Thread 3 está procesando el elemento 6 (valor: 27)
+el Thread 2 está procesando el elemento 8 (valor: 26)
+el Thread 3 está procesando el elemento 9 (valor: 25)
+el Thread 0 está procesando el elemento 10 (valor: 23)
+el Thread 1 está procesando el elemento 11 (valor: 21)
+el Thread 1 está procesando el elemento 12 (valor: 19)
+el Thread 0 está procesando el elemento 13 (valor: 18)
+el Thread 2 está procesando el elemento 14 (valor: 18)
+el Thread 3 está procesando el elemento 15 (valor: 18)
+el Thread 1 está procesando el elemento 16 (valor: 18)
+el Thread 0 está procesando el elemento 17 (valor: 17)
+el Thread 3 está procesando el elemento 18 (valor: 14)
+el Thread 2 está procesando el elemento 19 (valor: 14)
+el Thread 2 está procesando el elemento 20 (valor: 13)
+el Thread 3 está procesando el elemento 21 (valor: 12)
+el Thread 0 está procesando el elemento 22 (valor: 7)
+el Thread 1 está procesando el elemento 23 (valor: 7)
+el Thread 0 está procesando el elemento 24 (valor: 6)
+el Thread 1 está procesando el elemento 25 (valor: 5)
+el Thread 3 está procesando el elemento 26 (valor: 3)
+el Thread 2 está procesando el elemento 27 (valor: 2)
+el Thread 1 está procesando el elemento 28 (valor: 1)
+el Thread 0 está procesando el elemento 29 (valor: 1)
+Tiempo total de ejecución: 129.00 segundos
+
+Menor performance, + trabajo pesado para los hilos, me asegura que voy a perder tiempo con el procesamiento "mas demandante" de entrada, en vez de un planificandolo de otra manera
+1
