@@ -17,7 +17,7 @@ process EmpleadoB{
 muestra m; texto set,res;
 while(true){
 Admin!Pedido();
-EmpleadoB?DarMuestraB(m);
+Admin?DarMuestraB(m);
 set=DarSetMuestra(m);
 EmpleadoC!DarSetAnalisis(m,set);
 EmpleadoC?Resultados(res);
