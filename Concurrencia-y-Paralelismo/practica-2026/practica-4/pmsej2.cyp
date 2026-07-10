@@ -10,7 +10,7 @@ Admin!muestras(m);
 process Admin{
 cola c; Muestra m,act;
 do EmpleadoA?Muestras(m) --> push(c,m)
-[] not empty(c); EmpleadoB?Pedido() --> Pop(c,m); EmpleadoB!DarMuestraB(m);
+[] if not empty(c); EmpleadoB?Pedido() --> Pop(c,m); EmpleadoB!DarMuestraB(m);
 od
 }
 process EmpleadoB{

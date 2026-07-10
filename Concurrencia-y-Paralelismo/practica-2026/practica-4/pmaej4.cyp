@@ -4,30 +4,34 @@
 
 chan pedidos(int, accion text);
 chan darCabina[N](int); // idC,idCab
-chan factura[N](text);
- 
- process Cliente [id: 0.. N-1]{
- text f; int idCab;
- send pedido(id,'pedir');
- receive darCabina[id](idCab);
- usarcabina(idCab);
- send pedido(id,'pagar');
- receive factura[id](f);
- }
- 
- process Empleado{
+chan liberarCabina(int,int);
+chan atender(int);
+chan factura[N](int);
 
-	while (true){
-		receive pedido(idC,accion);
-		if (accion <> 'pagar') ->
-			send darCabina[idC](darcabdisponible());
+process Cliente[id:0..N-1]{
+	send pedido(id);
+	send atender(1);
+	receive darCabina[id](idCab);
+	-- usar cabina
+	send liberarCabina(idCab,idCliente);
+	send atender(0);
+	receive factura[id](fact);
+}
 
-		else
-			cobrar();
-			send factura[idC](hacerfactura());
-		fi
-
-
+process Empleado{
+	cola cabina; // 10 recursos
+	int valor;
+	while(true){
+		receive atender(valor);
+		if(!empty(pedido)) and (empty(liberarCabina)){
+			receive pedido(idC);
+			idCab= pop(cabina);
+			send darCabina[idC](idCab);
+		}else if(!empty(liberarCabina)){
+			receive liberarCabina(idCab,idC);
+			push (cabina,idCab);
+			comprobante= cobrar();
+			send factura[idC](comprobante);
+		}
 	}
-
- }
+}

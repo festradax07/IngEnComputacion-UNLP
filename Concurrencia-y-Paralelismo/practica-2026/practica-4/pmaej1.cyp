@@ -24,7 +24,9 @@ while(true){
 
 b) no hay que modificarse nada, es valida de igual forma
 
-c) al tener mas de uno y estar consultando si la cola esta vacia puedo generar demora innecesaria en uno de los procesos empleado. Para eso utilizo un coordinador que verifique la cola y distribuya la carga a cada uno de ellos sin pisarse.
+c) al tener mas de uno y estar consultando si la cola esta vacia puedo generar 
+demora innecesaria en uno de los procesos empleado.
+Para eso utilizo un coordinador que verifique la cola y distribuya la carga a cada uno de ellos sin pisarse.
 
 chan cola(turno);
 chan terminar[N](int);

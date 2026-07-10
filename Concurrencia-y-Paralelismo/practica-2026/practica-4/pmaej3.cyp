@@ -3,6 +3,8 @@ chan pedidosVendedores[V](idC,texto);
 chan haypedido(idV);
 chan pedidosCocineros(idC,texto);
 chan comidas[C](comida);
+
+
 process Cliente [id:0..C-1]{
 text combo= elegirCombo();
 Comida c
@@ -13,12 +15,11 @@ receive comidas[id](c);
 
 process CoordinadorV{
 	text texto, int idp,idv;
-	while (true) do{
+	while (true){
 		receive hayPedido(idv);
 		if (empty(pedidos)) {texto='vacio'; idc=-1}
 		else receive pedidos(idc,texto);
 		send pedidosVendedores[idv](idc,texto);
-
 	}
 }
 
