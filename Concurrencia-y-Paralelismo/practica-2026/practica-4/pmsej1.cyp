@@ -1,1 +1,32 @@
-r examinadores y 1 proceso analizador. R proceso, 1 analizador, un canal con comodines para analizador, el unico pero es que debe sincronizarse con uno de los procesos para recibir, por lo que se necesita un administrador con una cola, al mismo tiempo este ordena la cola por orden de llegada. por lo que se cubre los 3 puntos en uno solo. es la mejor solucion que maximiza concurrencia y le importa el orden, no creo que se pueda maximizar sin importar el orden, porque es la misma solucion, un administrador como buffer.
+r examinadores y 1 proceso analizador. 
+R proceso, 1 analizador, un canal con comodines para analizador, 
+el unico pero es que debe sincronizarse con uno de los procesos para recibir, 
+por lo que se necesita un administrador con una cola, al mismo tiempo este ordena la cola por orden de llegada. 
+por lo que se cubre los 3 puntos en uno solo. es la mejor solucion que maximiza concurrencia y le importa el orden, 
+no creo que se pueda maximizar sin importar el orden, porque es la misma solucion, un administrador como buffer.
+
+process Examinador[id:0..R-1]{
+    virus sospecha;
+    while true{
+        sospecha = buscarVirus();
+        Buffer!posiblesvirus(sospecha);
+    }
+}
+
+process Analizador{
+    virus sospecha;
+    while true{
+        Buffer!haySospecha(id);
+        Buffer?recibirSospecha(sospecha);
+        analizo(sospecha);
+    }
+}
+
+Process Buffer{
+    cola buffer;
+    virus sospecha;
+    do Examinador[*]?posiblesVirus(sospecha) -> push (buffer,sospecha);
+    [] not empty(buffer);Analizador?haySospecha(idA) -> Analizador!recibirSospecha(pop(buffer));
+    od
+
+}
