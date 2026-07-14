@@ -38,8 +38,8 @@ Procedure sistema is
 		signal:texto;
 	BEGIN
 		LOOP 
+			signal:=medirSignal();
 			SELECT
-				signal:=medirSignal();
 				Central.SignalP2(signal);
 			ELSE
 				DELAY 60;
@@ -50,25 +50,25 @@ Procedure sistema is
 
 	TASK BODY CENTRAL IS
 		corte:boolean;
+		signal:text;
 	BEGIN
 		ACCEPT SignalP1(signal:IN texto);
 		LOOP
 			SELECT
 				ACCEPT SignalP1(signal:IN texto);
 			OR
-				ACCEPT SignalP2(signal:IN texto) DO
+				ACCEPT SignalP2(signal:IN texto);
 					timer.timerinit;
 					corte:=false;
 					while (not corte) loop
 						SELECT	
-							Accept signalP2(signal);
+							WHEN(timerout' count=0) =>
+								Accept signalP2(signal:);
 						OR
-							ACCEPT timerout DO;
-								corte:=true
-							END timerout;
+							ACCEPT timerout;
+							corte:=true;
 						END SELECT;
 					END LOOP;
-				END SIGNALP2;
 			END SELECT;
 		END LOOP;
 	END CENTRAL;

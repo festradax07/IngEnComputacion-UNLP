@@ -30,6 +30,7 @@ Procedure Clinica is
 			END SELECT;
 		END LOOP;
 	END PERSONA;
+	
 	TASK TYPE enfermera;
 	arrEnfermera:array (1..E) of Enfermera;
 	TASK BODY Enfermera IS

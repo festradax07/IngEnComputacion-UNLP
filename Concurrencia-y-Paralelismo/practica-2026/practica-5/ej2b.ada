@@ -12,7 +12,7 @@ procedure BANCO is
 	Begin
 		SELECT
 			Empleado.pedido('datos',res);
-		OR DELAY 600;
+		OR DELAY 600; // espero 10 mins a hacer la request y si no se hace no hago nada NULL
 			NULL
 		END SELECT;
 	End Cliente;

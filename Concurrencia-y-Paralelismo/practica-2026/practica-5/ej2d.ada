@@ -12,10 +12,10 @@ procedure BANCO is
 	Begin
 		SELECT
 			Empleado.pedido('datos',res);
-		OR DELAY 600;
+		OR DELAY 600;// espero 10 mins
 			SELECT 
-				Empleado.pedido('datos',res);
-			ELSE
+				Empleado.pedido('datos',res); // vuelvo a intentar otra vez
+			ELSE // si no me contestan me voy 
 				NULL
 			END SELECT;
 		END SELECT;

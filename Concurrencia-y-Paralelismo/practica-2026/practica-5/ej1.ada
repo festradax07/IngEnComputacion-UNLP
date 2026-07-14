@@ -38,19 +38,16 @@ Procedure Puente is
 		LOOP
 			SELECT 
 				WHEN (peso < 5) => 
-					ACCEPT PasaAuto DO
-						peso:= peso + 1;
-					END PasaAuto;
+					ACCEPT PasaAuto;
+					peso:= peso + 1;
 			OR
 				WHEN (peso < 4) => 
-					ACCEPT PasaCamioneta DO
-						peso:= peso + 2;
-					END PasaCamioneta;
+					ACCEPT PasaCamioneta;
+					peso:= peso + 2;
 			OR
 				WHEN (peso < 3)  => 
-					ACCEPT PasaCamion DO
-						peso:= peso + 3;
-					END PasaCamion;
+					ACCEPT PasaCamion;
+					peso:= peso + 3;
 			OR
                 ACCEPT salir (pesoout: IN integer) DO
                     peso:= peso - pesoout;
